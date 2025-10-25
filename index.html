@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="manifest" href="manifest.json">
+    
+            <style>.lw { font-size: 60px; }</style>
+        </head>
+        <body>
+            
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Provjera IPTV pretplate - M3U link ili ručni unos">
+  <meta name="theme-color" content="#0f172a">
+  <title>IPTV Checker</title>
+  
+  <!-- PWA Manifest inline -->
+  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIklQVFYgQ2hlY2tlciIsCiAgInNob3J0X25hbWUiOiAiSVBUViBDaGVja2VyIiwKICAiZGVzY3JpcHRpb24iOiAiUHJvdmplcmEgSVBUViBwcmV0cGxhdGUgLSBNM1UgbGluayBpbGkgcnXEjW5pIHVub3MiLAogICJzdGFydF91cmwiOiAiLyIsCiAgImRpc3BsYXkiOiAic3RhbmRhbG9uZSIsCiAgImJhY2tncm91bmRfY29sb3IiOiAiIzBmMTcyYSIsCiAgInRoZW1lX2NvbG9yIjogIiMwZjE3MmEiLAogICJvcmllbnRhdGlvbiI6ICJwb3J0cmFpdC1wcmltYXJ5IiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiZGF0YTppbWFnZS9zdmcreG1sLCUzQ3N2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxMDAgMTAwJyUzRSUzQ3JlY3Qgd2lkdGg9JzEwMCcgaGVpZ2h0PScxMDAnIGZpbGw9JyUyMzI1NjNlYicvJTNFJTNDdGV4dCB4PSc1MCUyNScgeT0nNTAlMjUnIGZvbnQtc2l6ZT0nNTAnIHRleHQtYW5jaG9yPSdtaWRkbGUnIGR5PSculjNlbScgZmlsbD0nd2hpdGUnJTNF8J+TuiUzQyUyRnRleHQlM0UlM0MlMkZzdmclM0UiLAogICAgICAic2l6ZXMiOiAiMTkyeDE5MiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9LAogICAgewogICAgICAic3JjIjogImRhdGE6aW1hZ2Uvc3ZnK3htbCwlM0NzdmcgeG1sbnM9J2h0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnJyB2aWV3Qm94PScwIDAgMTAwIDEwMCclM0UlM0NyZWN0IHdpZHRoPScxMDAnIGhlaWdodD0nMTAwJyBmaWxsPSclMjMyNTYzZWInLyUzRSUzQ3RleHQgeD0nNTAlMjUnIHk9JzUwJTI1JyBmb250LXNpemU9JzUwJyB0ZXh0LWFuY2hvcj0nbWlkZGxlJyBkeT0nLjNlbScgZmlsbD0nd2hpdGUnJTNF8J+TuiUzQyUyRnRleHQlM0UlM0MlMkZzdmclM0UiLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3N2Zyt4bWwiLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFza2FibGUiCiAgICB9CiAgXQp9">
+  
+  <style>
+    :root {
+      --bg: #0f172a;
+      --text: #e6eef8;
+      --card: #111827;
+      --border: #23314e;
+      --button: #2563eb;
+      --muted: #9fb2c8;
+      --ok: #86efac;
+      --expired: #ffb4b4;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        --bg: #f1f5f9;
+        --text: #0f172a;
+        --card: #ffffff;
+        --border: #d0d7e2;
+        --button: #2563eb;
+        --muted: #475569;
+        --ok: #059669;
+        --expired: #dc2626;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      margin: 0;
+      padding: 20px;
+      background: var(--bg);
+      color: var(--text);
+      transition: background .3s, color .3s;
+    }
+    .card {
+      background: var(--card);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 6px 24px rgba(2,6,23,.6);
+      max-width: 600px;
+      margin: 20px auto;
+      border: 0px solid var(--border);
+      transition: background .3s, border .3s;
+    }
+    h2 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .tabs {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--border);
+    }
+    .tab {
+      background: transparent;
+      color: var(--muted);
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: 600;
+      border-bottom: 3px solid transparent;
+      transition: all .3s;
+      flex: 1;
+      font-size: 14px;
+    }
+    .tab:hover {
+      color: var(--text);
+    }
+    .tab.active {
+      color: var(--button);
+      border-bottom-color: var(--button);
+    }
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    label {
+      display: block;
+      margin-top: 10px;
+      font-weight: 500;
+    }
+    input, textarea {
+      width: 100%;
+      background: var(--bg);
+      color: var(--text);
+      border: 1px solid var(--border);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 4px;
+      font-size: 14px;
+      transition: background .3s, color .3s, border .3s;
+    }
+    textarea {
+      min-height: 100px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,'Helvetica Neue',Arial;
+      resize: vertical;
+    }
+    button {
+      background: var(--button);
+      color: #fff;
+      border: none;
+      padding: 12px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 14px;
+      width: 100%;
+      font-weight: 600;
+      font-size: 16px;
+      transition: background .3s;
+    }
+    button:hover {
+      filter: brightness(1.1);
+    }
+    .ok { color: var(--ok); }
+    .expired { color: var(--expired); }
+    .muted { color: var(--muted); font-size: 13px; }
+    .note { margin-top: 10px; color: var(--muted); }
+    .install-prompt {
+      text-align: center;
+      margin-top: 15px;
+      padding: 12px;
+      background: #059669;
+      color: white;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+      font-weight: 600;
+    }
+    .install-prompt:hover {
+      background: #047857;
+    }
+    .extracted-info {
+      background: var(--bg);
+      padding: 10px;
+      border-radius: 8px;
+      margin-top: 10px;
+      font-size: 13px;
+      border-left: 3px solid var(--button);
+    }
+  </style>
+
+
+  <div class="card">
+    <h2>🔍 IPTV Checker</h2>
+    <p class="muted">Odaberi način unosa i provjeri pretplatu</p>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('m3u')">📋 M3U link</button>
+      <button class="tab" onclick="switchTab('manual')">📝 Ručni unos</button>
+    </div>
+
+    <!-- M3U Link Tab -->
+    <div id="m3u" class="tab-content active">
+      <label>M3U Link (lista)</label>
+      <textarea id="m3uLink" placeholder="http://example.com:80/get.php?username=...&amp;password=...&amp;type=m3u_plus"></textarea>
+
+      <button onclick="checkM3U()">Provjeri pretplatu</button>
+    </div>
+
+    <!-- Manual Input Tab -->
+    <div id="manual" class="tab-content">
+      <label>Server (URL)</label>
+      <input type="text" id="server" placeholder="http://example.com:80">
+
+      <label>Korisničko ime</label>
+      <input type="text" id="username" placeholder="Korisničko ime">
+
+      <label>Lozinka</label>
+      <input type="password" id="password" placeholder="Lozinka">
+
+      <button onclick="checkManual()">Provjeri pretplatu</button>
+    </div>
+
+    <div id="result" class="note"><span class="expired">⚠️ Unesite podatke.</span></div>
+    
+    <div id="installPrompt" class="install-prompt">
+      📥 Instaliraj kao aplikaciju
+    </div>
+  </div>
+
+  <script>
+    // Service Worker inline
+    const swCode = `
+      const CACHE_NAME = 'iptv-checker-combined-v1';
+      const urlsToCache = ['/'];
+
+      self.addEventListener('install', event => {
+        event.waitUntil(
+          caches.open(CACHE_NAME)
+            .then(cache => cache.addAll(urlsToCache))
+        );
+      });
+
+      self.addEventListener('fetch', event => {
+        event.respondWith(
+          caches.match(event.request)
+            .then(response => response || fetch(event.request))
+        );
+      });
+
+      self.addEventListener('activate', event => {
+        event.waitUntil(
+          caches.keys().then(cacheNames => {
+            return Promise.all(
+              cacheNames.map(cacheName => {
+                if (cacheName !== CACHE_NAME) {
+                  return caches.delete(cacheName);
+                }
+              })
+            );
+          })
+        );
+      });
+    `;
+
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+      const blob = new Blob([swCode], { type: 'application/javascript' });
+      const swUrl = URL.createObjectURL(blob);
+      
+      navigator.serviceWorker.register(swUrl)
+        .then(reg => console.log('✅ Service Worker registriran - PWA aktivna!'))
+        .catch(err => console.log('❌ Service Worker greška:', err));
+    }
+
+    // PWA Install Prompt
+    let deferredPrompt;
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.getElementById('installPrompt').style.display = 'block';
+    });
+
+    document.getElementById('installPrompt').addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`Instalacija: ${outcome}`);
+        deferredPrompt = null;
+        document.getElementById('installPrompt').style.display = 'none';
+      }
+    });
+
+    // Tab Switching
+    function switchTab(tabName) {
+      // Hide all tabs
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      
+      // Show selected tab
+      document.getElementById(tabName).classList.add('active');
+      event.target.classList.add('active');
+      
+      // Reset result
+      document.getElementById('result').innerHTML = '<span class="expired">⚠️ Unesite podatke.</span>';
+    }
+
+    // Extract credentials from M3U URL
+    function extractCredentials(m3uUrl) {
+      try {
+        const url = new URL(m3uUrl);
+        const username = url.searchParams.get('username');
+        const password = url.searchParams.get('password');
+        const server = `${url.protocol}//${url.host}`;
+        
+        return { server, username, password };
+      } catch (error) {
+        return null;
+      }
+    }
+
+    // Check subscription
+    async function checkSubscription(server, username, password, showExtracted = false) {
+      const output = document.getElementById('result');
+      
+      let extractedHtml = '';
+      if (showExtracted) {
+        extractedHtml = `<div class="extracted-info">
+          <b>📡 Server:</b> ${server}<br>
+          <b>👤 Korisnik:</b> ${username}<br>
+          <b>🔑 Lozinka:</b> ${'*'.repeat(password.length)}
+        </div>`;
+        output.innerHTML = extractedHtml + '<span class="muted">⏳ Provjeravam pretplatu...</span>';
+      } else {
+        output.innerHTML = '<span class="muted">⏳ Provjeravam...</span>';
+      }
+
+      const apiUrl = `${server}/player_api.php?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
+      
+      try {
+        let fetchUrl = apiUrl;
+    // Ako nije lokalno, koristi proxy zbog CORS ograničenja
+    if (location.protocol.startsWith('http') && !location.hostname.includes('localhost')) {
+      try {
+        // Prvo pokušaj s AllOrigins
+        fetchUrl = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(apiUrl);
+        var testRes = await fetch(fetchUrl);
+        if (!testRes.ok) throw new Error('AllOrigins failed');
+      } catch (e1) {
+        try {
+          // Ako AllOrigins padne, probaj corsproxy.io
+          fetchUrl = 'https://corsproxy.io/?' + encodeURIComponent(apiUrl);
+          var testRes2 = await fetch(fetchUrl);
+          if (!testRes2.ok) throw new Error('corsproxy.io failed');
+        } catch (e2) {
+          // Ako ni to ne uspije, prikaži korisniku URL za ručni test
+          document.getElementById('result').innerHTML = '<span class="expired">⚠️ Ne mogu dohvatiti podatke.<br>Probaj ručno otvoriti:<br>' + fetchUrl + '</span>';
+          return;
+        }
+      }
+    }
+    const res = await fetch(fetchUrl);
+        if (!res.ok) {
+          output.innerHTML = extractedHtml + `<span class="expired">Greška: ${res.status} (${res.statusText})</span>`;
+          return;
+        }
+        const data = await res.json();
+        if (!data || !data.user_info) {
+          output.innerHTML = extractedHtml + '<span class="expired">Nevažeći odgovor sa servera.</span>';
+          return;
+        }
+        const info = data.user_info;
+        const exp = info.exp_date ? new Date(parseInt(info.exp_date) * 1000) : null;
+        
+        let html = extractedHtml;
+        
+        html += `<div style="line-height: 1.8; margin-top: ${showExtracted ? '10px' : '0'};">`;
+        html += `<b>Korisnik:</b> ${info.username || '-'}<br>`;
+        html += `<b>Status:</b> ${info.status || '-'}<br>`;
+        
+        if (exp) {
+          const now = new Date();
+          const diff = Math.floor((exp - now) / (1000*60*60*24));
+          const status = diff >= 0 ? '<span class="ok">Aktivno</span>' : '<span class="expired">Isteklo</span>';
+          html += `<b>Datum isteka:</b> ${exp.toLocaleString('hr-HR')}<br>`;
+          html += `<b>Preostalo:</b> ${diff >= 0 ? diff + ' dana' : 'isteklo'}<br>`;
+          html += `<b>Stanje:</b> ${status}`;
+        } else {
+          html += `<b>Datum isteka:</b> N/A`;
+        }
+        html += `</div>`;
+        output.innerHTML = html;
+      } catch (err) {
+        output.innerHTML = extractedHtml + `<span class="expired">⚠️ Ne mogu dohvatiti podatke (CORS ili mrežna greška).</span>`;
+      }
+    }
+
+    // Manual check
+    async function checkManual() {
+      const server = document.getElementById('server').value.trim().replace(/\/$/, '');
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+      const output = document.getElementById('result');
+
+      if (!server || !username || !password) {
+        output.innerHTML = '<span class="expired">⚠️ Unesite sve podatke.</span>';
+        return;
+      }
+
+      await checkSubscription(server, username, password, false);
+    }
+
+    // M3U check
+    async function checkM3U() {
+      const m3uLink = document.getElementById('m3uLink').value.trim();
+      const output = document.getElementById('result');
+
+      if (!m3uLink) {
+        output.innerHTML = '<span class="expired">⚠️ Unesi M3U link.</span>';
+        return;
+      }
+
+      const credentials = extractCredentials(m3uLink);
+      
+      if (!credentials || !credentials.server || !credentials.username || !credentials.password) {
+        output.innerHTML = '<span class="expired">⚠️ Neispravan M3U link. Provjerite format.</span>';
+        return;
+      }
+
+      await checkSubscription(credentials.server, credentials.username, credentials.password, true);
+    }
+  </script>
+
+
+            <script>// Write JavaScript here</script>
+        
+    
+</body>
