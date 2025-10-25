@@ -1,18 +1,14 @@
-# IPTV Checker Web App (Smart Proxy)
+ 📺 IPTV Checker Web App
 
-Ova verzija koristi automatski Smart Proxy sustav koji omogućuje rad i na GitHub Pagesu bez CORS grešaka.
+Jednostavna i moderna **web-aplikacija** za provjeru IPTV pretplate.  
+Omogućuje unos IPTV servera, korisničkog imena i lozinke te prikaz statusa i datuma isteka pretplate — sve direktno iz preglednika.
 
-## Logika dohvaćanja
-1. Lokalno (file://, localhost) → izravni API poziv.
-2. Online (GitHub Pages, HTTPS) → pokušava redom:
-   - AllOrigins
-   - corsproxy.io
-   - ako oba padnu → prikaže link za ručni test.
+---
 
-## Ikone
-Plave privremene ikone (favicon + PWA).
+ 🚀 Značajke
 
-## Pokretanje
-1. Otvorite `index.html` lokalno ili hostajte na GitHub Pages.
-2. Unesite M3U link ili ručno podatke.
-3. Kliknite **Provjeri pretplatu**.
+✅ Provjera IPTV pretplate putem **player_api.php**  
+✅ Automatsko otkrivanje **datuma isteka i statusa (aktivno / isteklo)**  
+✅ **Smart Proxy sustav** koji radi i na **GitHub Pages / HTTPS** okruženju  
+✅ Podrška za **PWA (Progressive Web App)** – može se instalirati kao aplikacija  
+✅ Minimalistički i responzivan dizajn (tamni i svijetli način rada)
